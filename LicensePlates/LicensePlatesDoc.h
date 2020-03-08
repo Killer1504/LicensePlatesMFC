@@ -6,6 +6,10 @@
 #pragma once
 
 
+#include "Camera.h"
+
+
+
 class CLicensePlatesDoc : public CDocument
 {
 protected: // create from serialization only
@@ -14,6 +18,8 @@ protected: // create from serialization only
 
 // Attributes
 public:
+	//cac bien
+	CCamera* m_pCamera[MAX_CAM_NUMBER];
 
 // Operations
 public:

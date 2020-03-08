@@ -33,10 +33,20 @@ CLicensePlatesDoc::CLicensePlatesDoc() noexcept
 {
 	// TODO: add one-time construction code here
 
+	//khoi tao camera
+	for (int i = 0; i < MAX_CAM_NUMBER; i++)
+	{
+		m_pCamera[i] = new CCamera(i, CCamera::Webcam);
+	}
+
 }
 
 CLicensePlatesDoc::~CLicensePlatesDoc()
 {
+	for (auto p : m_pCamera)
+	{
+		delete p;
+	}
 }
 
 BOOL CLicensePlatesDoc::OnNewDocument()
@@ -78,7 +88,7 @@ void CLicensePlatesDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 	CString strText = _T("TODO: implement thumbnail drawing here");
 	LOGFONT lf;
 
-	CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
+	CFont* pDefaultGUIFont = CFont::FromHandle((HFONT)GetStockObject(DEFAULT_GUI_FONT));
 	pDefaultGUIFont->GetLogFont(&lf);
 	lf.lfHeight = 36;
 
@@ -109,7 +119,7 @@ void CLicensePlatesDoc::SetSearchContent(const CString& value)
 	}
 	else
 	{
-		CMFCFilterChunkValueImpl *pChunk = nullptr;
+		CMFCFilterChunkValueImpl* pChunk = nullptr;
 		ATLTRY(pChunk = new CMFCFilterChunkValueImpl);
 		if (pChunk != nullptr)
 		{

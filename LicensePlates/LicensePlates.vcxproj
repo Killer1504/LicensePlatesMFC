@@ -190,6 +190,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Assit.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CRunningDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LicensePlates.h" />
@@ -202,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assit.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CRunningDlg.cpp" />
     <ClCompile Include="LicensePlates.cpp" />
     <ClCompile Include="LicensePlatesDoc.cpp" />

@@ -104,12 +104,27 @@ void CMainFrame::Dump(CDumpContext& dc) const
 void CMainFrame::OnToolTakepicture()
 {
 	// TODO: Add your command handler code here
-	CFileDialog image_file(TRUE, NULL, NULL, OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST,
-		_T("Image Files (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|All Files(*.*)|*.*||"));
 
-	if (image_file.DoModal() == IDOK)
+	if (m_pDoc->m_pCamera[0]->m_bOpen)
 	{
-		Mat im = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
-		m_pView->DisplayImage(im);
+		Mat im;
+		if (m_pDoc->m_pCamera[0]->TakeImage(im))
+		{
+			m_pView->DisplayImage(im);
+		}
+		else
+			im.release();
+
 	}
+	else
+	{
+		CFileDialog image_file(TRUE, NULL, NULL, OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST,
+			_T("Image Files (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|All Files(*.*)|*.*||"));
+		if (image_file.DoModal() == IDOK)
+		{
+			Mat im = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
+			m_pView->DisplayImage(im);
+		}
+	}
+	
 }
