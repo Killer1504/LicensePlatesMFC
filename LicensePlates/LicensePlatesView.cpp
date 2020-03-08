@@ -12,6 +12,7 @@
 
 #include "LicensePlatesDoc.h"
 #include "LicensePlatesView.h"
+#include "WorkerThread.h"
 
 
 
@@ -62,9 +63,9 @@ void CLicensePlatesView::DisplayImage(Mat& image, BOOL bSetMouseCallback, BOOL b
 	if (bSetMouseCallback)
 	{
 		//
-		/*cv::setMouseCallback(winname, NULL);
-		m_imgDisplay = image.clone();*/
-		Sleep(1);
+		cv::setMouseCallback(winname, NULL);
+		m_imgDisplay = image.clone();
+		cv::setMouseCallback(winname, onMouse, &m_imgDisplay);
 	}
 	else
 		m_imgDisplay.release();

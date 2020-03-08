@@ -39,6 +39,9 @@ CLicensePlatesDoc::CLicensePlatesDoc() noexcept
 		m_pCamera[i] = new CCamera(i, CCamera::Webcam);
 	}
 
+	m_bContinous = FALSE;
+	m_bIsprocessing = FALSE;
+
 }
 
 CLicensePlatesDoc::~CLicensePlatesDoc()

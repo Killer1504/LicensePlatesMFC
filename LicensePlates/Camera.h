@@ -5,6 +5,7 @@ class CCamera
 {
 public:
 	//ham khoi tao
+	CCamera();
 	CCamera(int nCameraSelect, int nDeviceSelect = 0);
 	~CCamera();
 

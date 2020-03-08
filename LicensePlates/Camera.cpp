@@ -1,6 +1,14 @@
 #include "pch.h"
 #include "Camera.h"
 
+CCamera::CCamera()
+{
+	m_nCameraSelect = 0;
+	m_nDeviceSelect = CCamera::Webcam;
+	m_bOpen = FALSE;
+	m_bOpen = Connect();
+}
+
 CCamera::CCamera(int nCameraSelect, int nDeviceSelect)
 {
 	m_nCameraSelect = nCameraSelect;

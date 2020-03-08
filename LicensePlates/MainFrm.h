@@ -4,6 +4,10 @@
 
 #pragma once
 
+#define WM_SETTEXTSTATUS	(WM_USER + 0)
+#define WM_START			(WM_USER + 1)
+#define WM_STOP				(WM_USER + 2)
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -39,6 +43,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
+	afx_msg LRESULT SetTextStatus(WPARAM wParam, LPARAM lParam);
+
 	afx_msg void OnToolTakepicture();
 };
 

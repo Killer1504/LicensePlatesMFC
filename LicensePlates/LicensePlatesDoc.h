@@ -23,6 +23,10 @@ public:
 
 // Operations
 public:
+	//cac bien
+
+	BOOL m_bContinous; // danh dau vong lap continous
+	BOOL m_bIsprocessing; // dang xu ly anh
 
 // Overrides
 public:

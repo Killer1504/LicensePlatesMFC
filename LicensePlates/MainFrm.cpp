@@ -19,6 +19,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	ON_MESSAGE(WM_SETTEXTSTATUS, &CMainFrame::SetTextStatus)
 	ON_COMMAND(ID_TOOL_TAKEPICTURE, &CMainFrame::OnToolTakepicture)
 END_MESSAGE_MAP()
 
@@ -100,6 +101,14 @@ void CMainFrame::Dump(CDumpContext& dc) const
 // CMainFrame message handlers
 
 
+
+LRESULT CMainFrame::SetTextStatus(WPARAM wParam, LPARAM lParam)
+{
+	int index = (int)wParam;
+	LPCTSTR lpszNewText = (LPCTSTR)lParam;
+	m_wndStatusBar.SetPaneText(index, lpszNewText);
+	return 0;
+}
 
 void CMainFrame::OnToolTakepicture()
 {
