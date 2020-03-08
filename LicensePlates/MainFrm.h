@@ -46,6 +46,8 @@ public:
 	afx_msg LRESULT SetTextStatus(WPARAM wParam, LPARAM lParam);
 
 	afx_msg void OnToolTakepicture();
+	afx_msg void OnCameraConnect();
+	afx_msg void OnCameraDisconnect();
 };
 
 

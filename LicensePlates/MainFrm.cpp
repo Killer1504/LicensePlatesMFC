@@ -21,6 +21,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_MESSAGE(WM_SETTEXTSTATUS, &CMainFrame::SetTextStatus)
 	ON_COMMAND(ID_TOOL_TAKEPICTURE, &CMainFrame::OnToolTakepicture)
+	ON_COMMAND(ID_CAMERA_CONNECT, &CMainFrame::OnCameraConnect)
+	ON_COMMAND(ID_CAMERA_DISCONNECT, &CMainFrame::OnCameraDisconnect)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -117,9 +119,9 @@ void CMainFrame::OnToolTakepicture()
 	if (m_pDoc->m_pCamera[0]->m_bOpen)
 	{
 		Mat im;
-		if (m_pDoc->m_pCamera[0]->TakeImage(im))
+		if (m_pDoc->m_pCamera[0]->TakeImage(m_pDoc->m_imgOrigin[0]))
 		{
-			m_pView->DisplayImage(im);
+			m_pView->DisplayImage(m_pDoc->m_imgOrigin[0]);
 		}
 		else
 			im.release();
@@ -131,9 +133,25 @@ void CMainFrame::OnToolTakepicture()
 			_T("Image Files (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|All Files(*.*)|*.*||"));
 		if (image_file.DoModal() == IDOK)
 		{
-			Mat im = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
-			m_pView->DisplayImage(im);
+			m_pDoc->m_imgOrigin[0] = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
+			m_pView->DisplayImage(m_pDoc->m_imgOrigin[0]);
 		}
 	}
 	
+}
+
+
+void CMainFrame::OnCameraConnect()
+{
+	// TODO: Add your command handler code here
+	if(!m_pDoc->m_pCamera[0]->m_bOpen)
+		m_pDoc->m_pCamera[0]->Connect();
+}
+
+
+void CMainFrame::OnCameraDisconnect()
+{
+	// TODO: Add your command handler code here
+	if (m_pDoc->m_pCamera[0]->m_bOpen)
+		m_pDoc->m_pCamera[0]->Disconnect();
 }

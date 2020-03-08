@@ -28,6 +28,8 @@ public:
 	BOOL m_bContinous; // danh dau vong lap continous
 	BOOL m_bIsprocessing; // dang xu ly anh
 
+	Mat m_imgOrigin[MAX_CAM_NUMBER];
+
 // Overrides
 public:
 	virtual BOOL OnNewDocument();

@@ -15,13 +15,15 @@
 #define ID_TOOL_START                   32771
 #define ID_TOOL_STOP                    32772
 #define ID_TOOL_TAKEPICTURE             32773
+#define ID_CAMERA_CONNECT               32774
+#define ID_CAMERA_DISCONNECT            32775
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        315
-#define _APS_NEXT_COMMAND_VALUE         32774
+#define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1004
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

@@ -15,7 +15,7 @@ void onMouse(int event, int x, int y, int flags, void* userdata)
 	int _y = y;
 
 	if (x< 0 || y < 0 || x > pImage->cols || y > pImage->rows) return;
-	status.Format(_T("(x, y) = (%d, %d)"), x, y);
+	status.Format(_T("(x, y) = (%d, %d) "), x, y);
 
 	/*switch (event)
 	{
@@ -27,7 +27,7 @@ void onMouse(int event, int x, int y, int flags, void* userdata)
 	{
 	case CV_8UC1:
 	{
-		status.AppendFormat(_T(" | (Gray) = (%d)"), pImage->at<uchar>(_y, _x));
+		status.AppendFormat(_T("| (Gray) = (%d)"), pImage->at<uchar>(_y, _x));
 	}
 	break;
 	case CV_8UC3:

@@ -14,12 +14,12 @@ CCamera::CCamera(int nCameraSelect, int nDeviceSelect)
 	m_nCameraSelect = nCameraSelect;
 	m_nDeviceSelect = nDeviceSelect;
 	m_bOpen = FALSE;
-	m_bOpen = Connect();
+	//m_bOpen = Connect();
 }
 
 CCamera::~CCamera()
 {
-	if (m_pWebcam != NULL)
+	if (m_bOpen)
 		delete m_pWebcam;
 }
 
