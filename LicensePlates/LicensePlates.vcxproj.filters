@@ -31,6 +31,9 @@
     <Filter Include="Dialog\Source Files">
       <UniqueIdentifier>{ad98f2a6-c231-4531-9361-e1b12f6493cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{0130e44a-5f78-4f19-9944-7de4bb6dc55b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LicensePlates.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="CRunningDlg.h">
       <Filter>Dialog\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LicensePlates.cpp">
@@ -85,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="CRunningDlg.cpp">
       <Filter>Dialog\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
