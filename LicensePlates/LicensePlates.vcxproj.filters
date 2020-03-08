@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Assit">
+      <UniqueIdentifier>{3036092f-8a73-467d-a326-66859029f824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assit\Header Files">
+      <UniqueIdentifier>{41004d58-62ba-4455-947c-ee65bd27ed5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assit\SourceFiles">
+      <UniqueIdentifier>{23b81a60-c5a0-436b-bf8f-dcda0cb733c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog">
+      <UniqueIdentifier>{d6c9e16c-7308-4005-a70d-1cf059bbe374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog\Header Files">
+      <UniqueIdentifier>{43785441-86e4-461a-bd50-23a812b23f7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog\Source Files">
+      <UniqueIdentifier>{ad98f2a6-c231-4531-9361-e1b12f6493cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LicensePlates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LicensePlatesDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LicensePlatesView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assit.h">
+      <Filter>Assit\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRunningDlg.h">
+      <Filter>Dialog\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LicensePlates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LicensePlatesDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LicensePlatesView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assit.cpp">
+      <Filter>Assit\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="CRunningDlg.cpp">
+      <Filter>Dialog\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LicensePlates.reg" />
+    <None Include="res\LicensePlates.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LicensePlates.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\LicensePlatesDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LicensePlates.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
