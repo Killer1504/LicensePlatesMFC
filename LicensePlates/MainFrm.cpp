@@ -9,6 +9,8 @@
 #include "MainFrm.h"
 #include "Assit.h"
 
+#include "CRunningDlg.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -135,6 +137,7 @@ void CMainFrame::OnToolTakepicture()
 		{
 			m_pDoc->m_imgOrigin[0] = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
 			m_pView->DisplayImage(m_pDoc->m_imgOrigin[0]);
+			m_pView->m_pRunningDlg->OnBnClickedTabRunningBtnTest();
 		}
 	}
 	

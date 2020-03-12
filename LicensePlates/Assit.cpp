@@ -70,16 +70,16 @@ BOOL FitNoise(Mat src, Mat& dst, double nNoise, BOOL m_bSoSanh)
 	if (src.channels() == 3)
 		cvtColor(src, src, COLOR_BGR2GRAY);
 	findContours(src, contours1, hierarchy1, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-	int size_contour = (int)contours1.size();
+	int nSizeContour = (int)contours1.size();
 
 	dst = Mat::zeros(src.size(), CV_8UC1);
-	if (size_contour <= 0)
+	if (nSizeContour <= 0)
 	{
 		return FALSE;
 	}
 	if (mArea < 0)
 		mArea = 0;
-	for (int i = 0; i < size_contour; i++)
+	for (int i = 0; i < nSizeContour; i++)
 	{
 
 		double bufferArea = contourArea(contours1[i]);
@@ -103,6 +103,100 @@ BOOL FitNoise(Mat src, Mat& dst, double nNoise, BOOL m_bSoSanh)
 		}
 
 	}
+	return TRUE;
+}
+
+BOOL Fit_ratio(Mat src, Mat& dst, double ratio1, double ratio2)
+{
+	vector<vector<Point> > contours1;
+	vector<Vec4i> hierarchy1;
+	if (src.channels() == 3)
+		cvtColor(src, src, COLOR_BGR2GRAY);
+	findContours(src, contours1, hierarchy1, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+	int nSizeContour = (int)contours1.size();
+
+	dst = Mat::zeros(src.size(), CV_8UC1);
+	if (nSizeContour <= 0)
+	{
+		return FALSE;
+	}
+	if (ratio1 < 0 || ratio2 < 0)
+		return FALSE;
+	for (int i = 0; i < nSizeContour; i++)
+	{
+		//double bufferArea = contourArea(contours1[i]);
+		cv::Rect rc = boundingRect(contours1[i]);
+		double nRate = (double)rc.width / (double)rc.height;
+		if (ratio1 <= nRate && nRate <= ratio2)
+		{
+			Mat _dst = Mat::zeros(dst.size(), CV_8UC1);
+			drawContours(_dst, contours1, i, Scalar(255, 255, 255), -1, 8);
+			bitwise_xor(dst, _dst, dst);
+		}
+		
+	}
+	return TRUE;
+}
+
+BOOL Fit_ratio_contour(Mat src, Mat& dst, double ratio1, double ratio2)
+{
+
+	vector<vector<Point> > contours1;
+	vector<Vec4i> hierarchy1;
+	if (src.channels() == 3)
+		cvtColor(src, src, COLOR_BGR2GRAY);
+	findContours(src, contours1, hierarchy1, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+	int nSizeContour = (int)contours1.size();
+
+	dst = Mat::zeros(src.size(), CV_8UC1);
+	if (nSizeContour <= 0)
+	{
+		return FALSE;
+	}
+	if (ratio1 < 0 || ratio2 < 0)
+		return FALSE;
+	for (int i = 0; i < nSizeContour; i++)
+	{
+		double dContour = contourArea(contours1[i]);
+		cv::Rect rc = boundingRect(contours1[i]);
+		int width = rc.width;
+		int height = rc.height;
+		double nRate = dContour / double(width * height);
+		if (ratio1 <= nRate && nRate <= ratio2)
+		{
+			Mat _dst = Mat::zeros(dst.size(), CV_8UC1);
+			drawContours(_dst, contours1, i, Scalar(255, 255, 255), -1, 8);
+			bitwise_xor(dst, _dst, dst);
+		}
+
+	}
+	return TRUE;
+}
+
+BOOL My_morphologyEx(Mat src, Mat& dst, int morph_elem, int morph_x, int morph_y, int morph_operator)
+{
+	if (!src.data) return FALSE;
+	dst = Mat::zeros(src.size(), CV_8UC1);
+	Mat element = getStructuringElement(morph_elem, Size(morph_x, morph_y));
+	morphologyEx(src, dst, morph_operator, element);
+	return TRUE;
+}
+
+BOOL FindRectLicense(Mat src, cv::Rect& rc)
+{
+	if (!src.data) return FALSE;
+	vector<vector<Point> > contours1;
+	vector<Vec4i> hierarchy1;
+	if (src.channels() == 3)
+		cvtColor(src, src, COLOR_BGR2GRAY);
+	findContours(src, contours1, hierarchy1, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+	int nSizeContour = (int)contours1.size();
+
+	if (nSizeContour != 1)
+	{
+		return FALSE;
+	}
+	rc = boundingRect(contours1[0]);
 	return TRUE;
 }
 
