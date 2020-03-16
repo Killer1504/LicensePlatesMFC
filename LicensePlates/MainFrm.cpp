@@ -4,11 +4,10 @@
 
 #include "pch.h"
 #include "framework.h"
-#include "LicensePlates.h"
 
+#include "LicensePlates.h"
 #include "MainFrm.h"
 #include "Assit.h"
-
 #include "CRunningDlg.h"
 
 #ifdef _DEBUG
@@ -80,8 +79,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 		return FALSE;
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-	//cs.style = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE | WS_MINIMIZEBOX;
-	cs.style = WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX |
+	cs.style = WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX |
 		FWS_ADDTOTITLE;
 		
 	return TRUE;
@@ -118,12 +116,12 @@ void CMainFrame::OnToolTakepicture()
 {
 	// TODO: Add your command handler code here
 
-	if (m_pDoc->m_pCamera[0]->m_bOpen)
+	if (pDoc->m_pCamera[0]->m_bOpen)
 	{
 		Mat im;
-		if (m_pDoc->m_pCamera[0]->TakeImage(m_pDoc->m_imgOrigin[0]))
+		if (pDoc->m_pCamera[0]->TakeImage(pDoc->m_imgOrigin[0]))
 		{
-			m_pView->DisplayImage(m_pDoc->m_imgOrigin[0]);
+			pView->DisplayImage(pDoc->m_imgOrigin[0]);
 		}
 		else
 			im.release();
@@ -135,9 +133,9 @@ void CMainFrame::OnToolTakepicture()
 			_T("Image Files (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|All Files(*.*)|*.*||"));
 		if (image_file.DoModal() == IDOK)
 		{
-			m_pDoc->m_imgOrigin[0] = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
-			m_pView->DisplayImage(m_pDoc->m_imgOrigin[0]);
-			m_pView->m_pRunningDlg->OnBnClickedTabRunningBtnTest();
+			pDoc->m_imgOrigin[0] = cv::imread(CString2string(image_file.GetPathName()), IMREAD_UNCHANGED);
+			pView->DisplayImage(pDoc->m_imgOrigin[0]);
+			//pView->m_pRunningDlg->OnBnClickedTabRunningBtnTest();
 		}
 	}
 	
@@ -147,14 +145,14 @@ void CMainFrame::OnToolTakepicture()
 void CMainFrame::OnCameraConnect()
 {
 	// TODO: Add your command handler code here
-	if(!m_pDoc->m_pCamera[0]->m_bOpen)
-		m_pDoc->m_pCamera[0]->Connect();
+	if(!pDoc->m_pCamera[0]->m_bOpen)
+		pDoc->m_pCamera[0]->Connect();
 }
 
 
 void CMainFrame::OnCameraDisconnect()
 {
 	// TODO: Add your command handler code here
-	if (m_pDoc->m_pCamera[0]->m_bOpen)
-		m_pDoc->m_pCamera[0]->Disconnect();
+	if (pDoc->m_pCamera[0]->m_bOpen)
+		pDoc->m_pCamera[0]->Disconnect();
 }

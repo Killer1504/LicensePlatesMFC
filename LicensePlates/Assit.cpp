@@ -3,9 +3,6 @@
 #include "Assit.h"
 
 
-CMainFrame* pMainFrame;
-CLicensePlatesDoc* pDoc;
-CLicensePlatesView* pView;
 
 string CString2string(CString cstr)
 {
@@ -98,6 +95,50 @@ BOOL FitNoise(Mat src, Mat& dst, double nNoise, BOOL m_bSoSanh)
 			{
 				Mat _dst = Mat::zeros(dst.size(), CV_8UC1);
 				drawContours(_dst, contours1, i, Scalar(255, 255, 255), -1, 8);
+				bitwise_xor(dst, _dst, dst);
+			}
+		}
+
+	}
+	return TRUE;
+}
+
+BOOL FitWidthHeight(Mat src, Mat& dst, int nMin, int nMax, BOOL m_bWH)
+{
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+	if (src.channels() == 3)
+		cvtColor(src, src, COLOR_BGR2GRAY);
+	findContours(src, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+	int nSizeContour = (int)contours.size();
+
+	dst = Mat::zeros(src.size(), CV_8UC1);
+	if (nSizeContour <= 0)
+	{
+		return FALSE;
+	}
+	for (int i = 0; i < nSizeContour; i++)
+	{
+		//double bufferArea = contourArea(contours1[i]);
+		cv::Rect rc = boundingRect(contours[i]);
+		int width = rc.width;
+		int hight = rc.height;
+		if (m_bWH)
+		{
+			if ( nMin <= width && width <= nMax)
+			{
+				Mat _dst = Mat::zeros(dst.size(), CV_8UC1);
+				drawContours(_dst, contours, i, Scalar(255, 255, 255), -1, 8);
+				bitwise_xor(dst, _dst, dst);
+			}
+			
+		}
+		else
+		{
+			if (nMin <= hight &&  hight<= nMax)
+			{
+				Mat _dst = Mat::zeros(dst.size(), CV_8UC1);
+				drawContours(_dst, contours, i, Scalar(255, 255, 255), -1, 8);
 				bitwise_xor(dst, _dst, dst);
 			}
 		}
@@ -200,9 +241,3 @@ BOOL FindRectLicense(Mat src, cv::Rect& rc)
 	return TRUE;
 }
 
-void InitPointer()
-{
-	pMainFrame = (CMainFrame*)AfxGetMainWnd();
-	pDoc = (CLicensePlatesDoc*)pMainFrame->GetActiveDocument();
-	pView = (CLicensePlatesView*)pMainFrame->GetActiveView();
-}

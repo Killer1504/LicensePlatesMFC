@@ -173,8 +173,8 @@ void CLicensePlatesView::Dump(CDumpContext& dc) const
 
 CLicensePlatesDoc* CLicensePlatesView::GetDocument() const // non-debug version is inline
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CLicensePlatesDoc)));
-	return (CLicensePlatesDoc*)m_pDocument;
+	ASSERT(pDocument->IsKindOf(RUNTIME_CLASS(CLicensePlatesDoc)));
+	return (CLicensePlatesDoc*)pDocument;
 }
 #endif //_DEBUG
 

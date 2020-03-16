@@ -15,9 +15,9 @@ class CLicensePlatesDoc;
 // CLicensePlatesApp:
 // See LicensePlates.cpp for the implementation of this class
 //
-extern CMainFrame* m_pMainFrame;
-extern CLicensePlatesDoc* m_pDoc;
-extern CLicensePlatesView* m_pView;
+extern CMainFrame* pMainFrame;
+extern CLicensePlatesDoc* pDoc;
+extern CLicensePlatesView* pView;
 class CLicensePlatesApp : public CWinApp
 {
 public:

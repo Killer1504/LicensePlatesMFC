@@ -18,9 +18,9 @@
 #define new DEBUG_NEW
 #endif
 
-CMainFrame* m_pMainFrame;
-CLicensePlatesDoc* m_pDoc;
-CLicensePlatesView* m_pView;
+CMainFrame* pMainFrame;
+CLicensePlatesDoc* pDoc;
+CLicensePlatesView* pView;
 // CLicensePlatesApp
 
 BEGIN_MESSAGE_MAP(CLicensePlatesApp, CWinApp)
@@ -128,15 +128,14 @@ BOOL CLicensePlatesApp::InitInstance()
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
 
-	InitPointer();
-	m_pMainFrame = (CMainFrame*)AfxGetMainWnd();
-	m_pDoc = (CLicensePlatesDoc*)m_pMainFrame->GetActiveDocument();
-	m_pView = (CLicensePlatesView*)m_pMainFrame->GetActiveView();
+	pMainFrame = (CMainFrame*)AfxGetMainWnd();
+	pDoc = (CLicensePlatesDoc*)pMainFrame->GetActiveDocument();
+	pView = (CLicensePlatesView*)pMainFrame->GetActiveView();
 	// The one and only window has been initialized, so show and update it
 	m_pMainWnd->ShowWindow(SW_MAXIMIZE);
 	m_pMainWnd->UpdateWindow();
 
-	m_pView->OnInitialUpdate();
+	pView->OnInitialUpdate();
 	// call DragAcceptFiles only if there's a suffix
 	//  In an SDI app, this should occur after ProcessShellCommand
 	// Enable drag/drop open

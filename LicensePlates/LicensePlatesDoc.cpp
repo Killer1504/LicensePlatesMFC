@@ -63,6 +63,13 @@ BOOL CLicensePlatesDoc::OnNewDocument()
 	return TRUE;
 }
 
+BOOL CLicensePlatesDoc::OnOpenDocument(LPCTSTR lpszPathName)
+{
+	if (!CDocument::OnOpenDocument(lpszPathName))
+		return FALSE;
+	return 0;
+}
+
 
 
 
@@ -70,14 +77,29 @@ BOOL CLicensePlatesDoc::OnNewDocument()
 
 void CLicensePlatesDoc::Serialize(CArchive& ar)
 {
+	//luu thay doi file Paramter
+	int nSize = sizeof(Parameter);
+	byte* pBuf = new byte[nSize];
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
+		memcpy(pBuf, &m_prm, nSize);
+		for (int i = 0; i < nSize; i++)
+		{
+			ar << *(pBuf + i);
+		}
 	}
 	else
 	{
 		// TODO: add loading code here
+		for (int i = 0; i < nSize; i++)
+		{
+			ar >> *(pBuf + i);
+		}
+		memcpy(&m_prm, pBuf, nSize);
 	}
+
+	delete[] pBuf;
 }
 
 #ifdef SHARED_HANDLERS
